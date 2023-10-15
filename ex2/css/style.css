@@ -1,0 +1,300 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#nav-container {
+  background-color: #353942;
+  padding: 1em 2em;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+nav h1 {
+  color: #fff;
+  margin-right: 1em;
+}
+
+nav a {
+  color: #6a6d72;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+
+#nav-container > div:nth-child(1) {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+}
+
+#hamburger-menu {
+  display: none;
+  margin-left: auto;
+}
+
+#nav-right {
+  display: flex;
+  gap: 1em;
+}
+
+#nav-right-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  #nav-right {
+    display: none;
+  }
+
+  #nav-right-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #hamburger-menu {
+    display: block;
+  }
+}
+
+nav a:hover {
+  color: #fff;  
+}
+
+.debug {
+  border: 1px dashed red;
+}
+
+#banner {
+  background-image: url("../images/main.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  padding: 3em 1em;
+}
+
+#banner-text > h1 {
+  /* margin-top: 2em; */
+}
+
+#banner-text > p {
+  margin-left: 2em;
+  margin-bottom: 0.5em;
+}
+
+#banner-text > span {
+  margin-left: 2em;
+  padding: 0 0.5em;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #2aa73d;
+}
+
+#slideshow {
+  margin-top: 1.5em;
+  position: relative;
+}
+
+#switch {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dash {
+  width: 15px;
+  height: 4px;
+  display: inline-block;
+  margin: 0 0.1em;
+  background-color: #fff;
+  opacity: 50%;
+  transition: 0.3s ease;
+
+  &.active {
+    opacity: 100%;
+  }
+}
+
+.dash:hover {
+  opacity: 100%;
+}
+
+.slide {
+  /* position: relative; */
+  width: 100%;
+  height: 800px;
+}
+
+.slide > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.location {
+  position: absolute;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  bottom: 40px;
+  width: 100%;
+}
+
+.city {
+  position: absolute;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: small;
+  bottom: 20px;
+  width: 100%;
+}
+
+#right {
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  top: 50%;
+  margin-top: -15px;
+  color: white;
+}
+
+#left {
+  position: absolute;
+  cursor: pointer;
+  left: 15px;
+  top: 50%;
+  margin-top: -15px;
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns with equal width */
+  column-gap: 2em;
+  row-gap: 2em;
+}
+
+
+
+/* First row */
+.row1 {
+  grid-column: span 2;
+  padding: 1em 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+
+  & > img {
+    width: 150px;
+    margin-bottom: 1em;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .row1 {
+    grid-column: span 6;
+  }
+}
+
+
+#circuits > div:nth-child(2) {
+  background-color: #efefef;
+}
+
+.row2 {
+  /* grid-row: 2; */
+  grid-column: span 3;
+  text-align: center;
+  background-color: white;
+  padding: 1em;
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .row2 {
+    grid-column: span 6;
+  }
+}
+
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+
+  & > form {
+    width: 100%;
+    display: flex;
+
+    & > input {
+      margin-right: auto;
+    }
+
+    & > button {
+      background-color: #17a2b8;
+      color: white;
+      width: 200px;
+      border-radius: 5px;
+      border: 0;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    & > form {
+      flex-direction: column;
+      align-items: center;
+
+      & > input {
+        margin-right: 0;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: #353942;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: .5em 0;
+
+  & > h1 {
+    color: white;
+
+    & > span {
+      color: #ffa500;
+    }
+  }
+}
+

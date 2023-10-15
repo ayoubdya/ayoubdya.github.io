@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>IAGI Travel</title>
+  </head>
+  <body>
+    <nav id="nav-container">
+      <div>
+        <h1>IAGI-Travel <span style="color: #ffa500">.</span></h1>
+
+        <div id="nav-right">
+          <a href="#banner">Accueil</a>
+          <a href="#slideshow">Destinations</a>
+          <a href="#circuits">Circuits</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <svg
+          id="hamburger-menu"
+          onclick="toggleMenu()"
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="#000"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </div>
+      <div id="nav-right-mobile">
+        <a href="#banner">Accueil</a>
+        <a href="#slideshow">Destinations</a>
+        <a href="#circuits">Circuits</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section id="banner">
+      <div id="banner-text">
+        <h1>Organiser Votre Voyage Sur Mesure.</h1>
+        <p>
+          Le site IAGI Travel vous permet de faire le tour du monde & des prix
+          uniques !
+        </p>
+        <span>Un conseiller est en ligne.</span>
+      </div>
+    </section>
+
+    <section id="slideshow">
+      <div class="slide">
+        <img src="./images/slide0.jpg" alt="slide0" width="100%" />
+        <div class="location">Lake Bled</div>
+        <div class="city">Bled</div>
+      </div>
+
+      <div class="slide hide">
+        <img src="./images/slide1.jpg" alt="slide1" width="100%" />
+        <div class="location">Lake Brienz</div>
+        <div class="city">Bern</div>
+      </div>
+
+      <div class="slide hide">
+        <img src="./images/slide2.jpg" alt="slide2" width="100%" />
+        <div class="location">Neuschwanstein Castle</div>
+        <div class="city">Schwangau</div>
+      </div>
+
+      <div class="slide hide">
+        <img src="./images/slide3.jpg" alt="slide3" width="100%" />
+        <div class="location">Stonehenge</div>
+        <div class="city">Salisbury</div>
+      </div>
+
+      <div class="slide hide">
+        <img src="./images/slide4.jpg" alt="slide4" width="100%" />
+        <div class="location">Venice</div>
+        <div class="city">Italy</div>
+      </div>
+
+      <svg
+        id="right"
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        fill="currentColor"
+        class="bi bi-arrow-right-circle"
+        viewBox="0 0 16 16"
+        onclick="nextSlide(1)"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
+        />
+      </svg>
+
+      <svg
+        id="left"
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle"
+        viewBox="0 0 16 16"
+        onclick="nextSlide(-1)"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+        />
+      </svg>
+
+      <div id="switch">
+        <span class="dash active" onclick="setSlide(0)"></span>
+        <span class="dash" onclick="setSlide(1)"></span>
+        <span class="dash" onclick="setSlide(2)"></span>
+        <span class="dash" onclick="setSlide(3)"></span>
+        <span class="dash" onclick="setSlide(4)"></span>
+      </div>
+    </section>
+
+    <section id="circuits" class="circuits">
+      <div class="grid-container" style="padding: 1.5em 1em">
+        <div class="row1">
+          <img src="./images/c1.png" alt="" width="150px" />
+          <div>
+            <h5>Planifier</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+              assumenda facere architecto cupiditate fugiat quas veniam ut
+              sapiente, aut voluptatem.
+            </p>
+          </div>
+        </div>
+        <div class="row1">
+          <img src="./images/c2.png" alt="" width="150px" />
+          <div>
+            <h5>Organiser</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+              magnam tempora fugiat sint laboriosam minima cumque! Atque eaque
+              mollitia itaque!
+            </p>
+          </div>
+        </div>
+        <div class="row1">
+          <img src="./images/c3.png" alt="" width="150px" />
+          <div>
+            <h5>Voyager</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Reiciendis enim dolore, reprehenderit totam tempore dolorem?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container" style="padding: 1em 1em">
+        <div class="row2">
+          <div>
+            <h5>Explorer</h5>
+            <hr width="90%" />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia,
+              veritatis.
+            </p>
+          </div>
+          <img src="./images/a1.jpg" alt="" width="50%" />
+        </div>
+        <div class="row2">
+          <div>
+            <h5>Explorer</h5>
+            <hr width="90%" />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia,
+              veritatis.
+            </p>
+          </div>
+          <img src="./images/a2.jpg" alt="" width="50%" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h1>Contacter-nous</h1>
+      <hr />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ut natus
+        voluptas? Est, rerum itaque. Enim tempora minus, ullam voluptatem,
+        quidem quae illo ad explicabo recusandae mollitia quisquam quasi
+      </p>
+      <form action="">
+        <label for="name">Votre Nom:</label>
+        <input type="text" name="name" placeholder="Entrez votre nom" />
+        <label for="email">Votre Email:</label>
+        <input type="text" name="email" placeholder="Entrez votre email" />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <footer>
+      <h1>IAGI-Travel <span>.</span></h1>
+
+      Copyright &copy; IAGI 2023
+    </footer>
+  </body>
+</html>
