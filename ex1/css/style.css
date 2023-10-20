@@ -8,39 +8,19 @@ nav {
   letter-spacing: 0.2em;
 }
 
-/* nav > div {
-  height: 100%;
-  background-color: var(--primary-color);
-  padding: 26px 20px;
-
-  & > a {
-    border-radius: 0;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-  }
-
-  &:hover {
-    background-color: white;
-    & > a {
-      color: var(--primary-color);
-    }
-  }
-} */
-
 .nav-link {
   color: white;
-  padding: 1.3em;
+  padding: 1.3em 1.5em !important;
 
+  &.active,
   &:hover {
-    color: var(--primary-color);
-    background-color: white;
+    color: var(--primary-color) !important;
+    background-color: white !important;
   }
 }
 
-.navbar-nav .nav-link.active {
-  color: var(--primary-color);
-  background-color: white;
+.navbar-toggler:focus {
+  box-shadow: none !important;
 }
 
 .bg-red {
@@ -85,12 +65,12 @@ nav {
 
 .divider-red {
   border-bottom: 3px solid var(--primary-color);
-  width: 7%;
+  width: 100px;
 }
 
 .divider-white {
   border-bottom: 3px solid #fff;
-  width: 7%;
+  width: 100px;
 }
 
 #portfolio img {
@@ -105,6 +85,7 @@ nav {
 .timeline {
   padding: 30px 10px;
   position: relative;
+  list-style: none;
 }
 
 .timeline::before {
@@ -136,7 +117,7 @@ nav {
 .timeline li .timeline-badge {
   width: 50px;
   line-height: 50px;
-  font-size: 20px;
+  /* font-size: 20px; */
   text-align: center;
   position: absolute;
   top: 16px;
@@ -144,6 +125,8 @@ nav {
   margin-left: -25px;
   background-color: #ddd;
   border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
 .timeline-panel-container {
@@ -175,7 +158,7 @@ nav {
 
 .timeline-panel::after {
   position: absolute;
-  top: 8px;
+  top: 26px;
   right: -15px;
   display: inline-block;
   border-top: 15px solid transparent;
@@ -187,7 +170,7 @@ nav {
 
 .timeline-panel-container-inverted .timeline-panel::after {
   position: absolute;
-  top: 8px;
+  top: 26px;
   left: -30px;
   right: auto;
   display: inline-block;
@@ -196,4 +179,17 @@ nav {
   border-right: 15px solid #fff;
   border-bottom: 15px solid transparent;
   content: " ";
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: auto !important;
+}
+
+.carousel-control-next {
+  right: -50px;
+}
+
+.carousel-control-prev {
+  left: -50px;
 }
