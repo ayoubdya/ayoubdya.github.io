@@ -1,13 +1,50 @@
-html, body {
+html,
+body {
   font-family: "Lato", sans-serif;
+  --primary-color: #d82c2e;
 }
 
-header {
+nav {
   letter-spacing: 0.2em;
 }
 
+/* nav > div {
+  height: 100%;
+  background-color: var(--primary-color);
+  padding: 26px 20px;
+
+  & > a {
+    border-radius: 0;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+
+  &:hover {
+    background-color: white;
+    & > a {
+      color: var(--primary-color);
+    }
+  }
+} */
+
+.nav-link {
+  color: white;
+  padding: 1.3em;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: white;
+  }
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--primary-color);
+  background-color: white;
+}
+
 .bg-red {
-  background-color: #d82c2e;
+  background-color: var(--primary-color);
 }
 
 .bg-gray {
@@ -39,7 +76,7 @@ header {
 }
 
 .text-red {
-  color: #d82c2e;
+  color: var(--primary-color);
 }
 
 .debug {
@@ -47,7 +84,7 @@ header {
 }
 
 .divider-red {
-  border-bottom: 3px solid #d82c2e;
+  border-bottom: 3px solid var(--primary-color);
   width: 7%;
 }
 
@@ -90,7 +127,8 @@ header {
   clear: both;
 }
 
-.timeline > li::before, .timeline > li::after {
+.timeline > li::before,
+.timeline > li::after {
   content: " ";
   display: table;
 }
@@ -159,4 +197,3 @@ header {
   border-bottom: 15px solid transparent;
   content: " ";
 }
-

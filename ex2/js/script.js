@@ -1,22 +1,25 @@
-let nav_right;
+let slides = document.querySelectorAll(".slide");
+let dashes = document.querySelectorAll(".dash");
+let next = document.querySelector("#next");
+let prev = document.querySelector("#prev");
+let nav_right_mobile = document.querySelector("#nav-right-mobile");
 
-let slides;
-let dashes;
-let next;
-let prev;
 let currentSlide = 0;
 
-//wait for the DOM to load
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
+const SLIDE_TIMEOUT = 3000;
 
-  slides = document.querySelectorAll(".slide");
-  dashes = document.querySelectorAll(".dash");
-  next = document.querySelector("#next");
-  prev = document.querySelector("#prev");
+let intervalID = createInterval();
 
-  nav_right = document.querySelector("#nav-right-mobile");
-});
+function createInterval() {
+  return setInterval(() => {
+    nextSlide(1);
+  }, SLIDE_TIMEOUT);
+}
+
+function restartInterval() {
+  clearInterval(intervalID);
+  intervalID = createInterval();
+}
 
 function setSlide(idx) {
   slides[currentSlide].classList.toggle("hide");
@@ -26,6 +29,7 @@ function setSlide(idx) {
   dashes[idx].classList.toggle("active");
 
   currentSlide = idx;
+  restartInterval();
 }
 
 function nextSlide(increment) {
@@ -36,12 +40,11 @@ function nextSlide(increment) {
 }
 
 function toggleMenu() {
-  console.log("toggleMenu");
-  const nav_right_styles = window.getComputedStyle(nav_right);
-  console.log(nav_right_styles.display);
+  const nav_right_mobile_styles = window.getComputedStyle(nav_right_mobile);
+  console.log(nav_right_mobile_styles.display);
 
-  nav_right.style.display =
-    nav_right_styles.display === "flex" ? "none" : "flex";
+  nav_right_mobile.style.display =
+    nav_right_mobile_styles.display === "flex" ? "none" : "flex";
 
   console.log(nav_container_styles.display);
 }
