@@ -29,7 +29,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #fff;  
+  color: #fff;
 }
 
 #nav-container > div:nth-child(1) {
@@ -41,6 +41,15 @@ nav a:hover {
 #hamburger-menu {
   display: none;
   margin-left: auto;
+  cursor: pointer;
+  fill: #6a6d72;
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    fill: white;
+    border-radius: 5px;
+  }
 }
 
 #nav-right {
@@ -58,7 +67,7 @@ nav a:hover {
   }
 
   #nav-right-mobile {
-    display: none;
+    display: none; /* javascript switches between none & flex */
     flex-direction: column;
     align-items: center;
   }
@@ -67,7 +76,6 @@ nav a:hover {
     display: block;
   }
 }
-
 
 .debug {
   border: 1px dashed red;
@@ -157,7 +165,8 @@ nav a:hover {
   width: 100%;
 }
 
-#right, #left {
+#right,
+#left {
   position: absolute;
   cursor: pointer;
   right: 15px;
@@ -172,7 +181,8 @@ nav a:hover {
   right: auto;
 }
 
-#left:hover, #right:hover {
+#left:hover,
+#right:hover {
   opacity: 100%;
   transition: ease 0.3s;
 }
@@ -187,8 +197,12 @@ nav a:hover {
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .grid-container {
@@ -197,8 +211,6 @@ nav a:hover {
   column-gap: 2em;
   row-gap: 2em;
 }
-
-
 
 /* First row */
 .row1 {
@@ -215,13 +227,11 @@ nav a:hover {
   }
 }
 
-
 @media screen and (max-width: 600px) {
   .row1 {
     grid-column: span 6;
   }
 }
-
 
 #circuits > div:nth-child(2) {
   background-color: #efefef;
@@ -241,7 +251,6 @@ nav a:hover {
     grid-column: span 6;
   }
 }
-
 
 #contact {
   display: flex;
@@ -285,7 +294,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: .5em 0;
+  padding: 0.5em 0;
 
   & > h1 {
     color: white;
@@ -295,4 +304,3 @@ footer {
     }
   }
 }
-
