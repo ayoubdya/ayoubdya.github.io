@@ -165,7 +165,57 @@ nav a:hover {
   width: 100%;
 }
 
-#right,
+.arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+  
+  & > svg {
+    fill: white;
+    width: 100%;
+  }
+}
+
+#right {
+  right: 0;
+
+  &:hover {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.8)
+      );
+  }
+}
+
+#left {
+  left: 0;
+  &:hover {
+
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.8)
+      );
+    }
+}
+
+/* #right:hover, #left:hover {
+  background: rgba(0, 0, 0, 0.5);
+} */
+
+/* #right,
 #left {
   position: absolute;
   cursor: pointer;
@@ -185,7 +235,7 @@ nav a:hover {
 #right:hover {
   opacity: 100%;
   transition: ease 0.3s;
-}
+} */
 
 .hide {
   display: none;
