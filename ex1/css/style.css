@@ -149,6 +149,10 @@ nav {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+
+  @media screen and (max-width: 600px) {
+    padding: 5px 5px;
+  }
 }
 
 .timeline-panel-container-inverted .timeline-panel {
