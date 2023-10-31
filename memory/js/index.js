@@ -3,7 +3,7 @@ const SHUFFLE_TIMES = 50;
 let oppenedCards = [];
 let gameOver = false;
 let score = 0;
-let seconds = 10;
+let seconds = 60;
 
 let hiddenCards = cards.length;
 
