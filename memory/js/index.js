@@ -1,10 +1,11 @@
 const cards = Array.from(document.querySelectorAll(".card"));
+const difficultyEl = document.querySelector("#difficulty");
+
 const SHUFFLE_TIMES = 50;
 let oppenedCards = [];
-let gameOver = false;
+let gameOver = true;
 let score = 0;
-let seconds = 60;
-
+let seconds = 120;
 let hiddenCards = cards.length;
 
 const scoreEl = document.querySelector(".score");
@@ -16,14 +17,17 @@ timerEl.textContent = `timer: ${seconds} s`;
 cards.forEach((el) => {
   el.addEventListener("click", () => {
     if (gameOver) return;
-    const card = el.querySelector("img");
+    const card = el.querySelector(".card-inner");
     if (oppenedCards.includes(card)) return;
-    card.classList.toggle("opacity-0");
+    card.classList.toggle("flip");
     oppenedCards.push(card);
     if (oppenedCards.length === 1) return;
-    if (oppenedCards[0].src !== oppenedCards[1].src) {
+    if (
+      oppenedCards[0].querySelector(".card-front > img").src !==
+      oppenedCards[1].querySelector(".card-front > img").src
+    ) {
       setTimeout(() => {
-        oppenedCards.forEach((card) => card.classList.toggle("opacity-0"));
+        oppenedCards.forEach((card) => card.classList.toggle("flip"));
         oppenedCards = [];
         console.log(1, oppenedCards);
         return;
@@ -36,7 +40,7 @@ cards.forEach((el) => {
       if (hiddenCards === 0) {
         setTimeout(() => {
           cards.forEach((el) => {
-            el.querySelector("img").classList.toggle("opacity-0");
+            el.querySelector(".card-inner").classList.toggle("flip");
           });
 
           setTimeout(() => {
@@ -50,15 +54,11 @@ cards.forEach((el) => {
   });
 });
 
-function resetCards() {
-  cards.forEach((el) => {
-    el.querySelector("img").classList.toggle("opacity-0");
-  });
-}
-
 function shuffle(times) {
   if (times === 0) return;
-  const _cards = [...cards.map((card) => card.querySelector("img"))];
+  const _cards = [
+    ...cards.map((card) => card.querySelector(".card-front > img")),
+  ];
   let randomIdx = Math.floor(Math.random() * _cards.length);
   const card_1 = _cards[randomIdx];
   _cards.splice(randomIdx, 1);
@@ -68,21 +68,45 @@ function shuffle(times) {
   shuffle(times - 1);
 }
 
-shuffle(SHUFFLE_TIMES);
-
-const intervalId = setInterval(() => {
-  seconds--;
-  timerEl.textContent = `timer: ${seconds} s`;
-  if (seconds === 0) {
-    gameOver = true;
-    timerEl.classList.add("text-red-500");
-    timerEl.textContent = "time is up!";
-    clearInterval(intervalId);
-    cards.forEach((el) => {
-      el.querySelector("img").classList.remove("opacity-0");
-    });
-    setTimeout(() => {
-      alert(`Game Over! Your score is ${score}`);
-    }, 600);
+function difficulty() {
+  const difficultyValue = difficultyEl.value;
+  switch (difficultyValue) {
+    case "easy":
+      seconds = 120;
+      break;
+    case "medium":
+      seconds = 60;
+      break;
+    case "hard":
+      seconds = 30;
+      break;
   }
-}, 1000);
+  timerEl.textContent = `timer: ${seconds} s`;
+}
+
+function startGame() {
+  const startBtn = document.querySelector(".start-btn");
+  startBtn.disabled = true;
+  difficultyEl.disabled = true;
+
+  shuffle(SHUFFLE_TIMES);
+
+  gameOver = false;
+
+  const intervalId = setInterval(() => {
+    seconds--;
+    timerEl.textContent = `timer: ${seconds} s`;
+    if (seconds === 0) {
+      gameOver = true;
+      timerEl.classList.add("text-red-500");
+      timerEl.textContent = "time is up!";
+      clearInterval(intervalId);
+      cards.forEach((el) => {
+        el.querySelector(".card-inner").classList.add("flip");
+      });
+      setTimeout(() => {
+        alert(`Game Over! Your score is ${score}`);
+      }, 600);
+    }
+  }, 1000);
+}
