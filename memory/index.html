@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
+    <!-- icon link -->
+    <link rel="icon" href="./images/icon.ico" />
     <link rel="stylesheet" href="./css/output.css" />
   </head>
   <body class="bg-gray-300">
@@ -15,7 +17,7 @@
           name="difficulty"
           id="difficulty"
           onchange="difficulty()"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+          class="bg-gray-50 border border-gray-300 hover:ring-1 hover:ring-gray-400 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
         >
           <option value="easy" selected>Easy</option>
           <option value="medium">Medium</option>
@@ -23,7 +25,8 @@
         </select>
         <button
           onclick="startGame()"
-          class="start-btn bg-green-800 text-white px-4 py-2 rounded-lg disabled:bg-gray-500"
+          class="start-btn bg-green-800 text-white px-4 py-2 rounded-lg disabled:bg-gray-500 disabled:text-slate-200 disabled:ring-0 enabled:hover:brightness-110 hover:ring-2 hover:ring-green-800 hover:ring-opacity-50 enabled:active:translate-y-2 transition-all duration-100 ease-in-out"
+          text-slate-200
         >
           Start Game
         </button>

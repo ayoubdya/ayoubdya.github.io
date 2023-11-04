@@ -3,10 +3,10 @@ const difficultyEl = document.querySelector("#difficulty");
 
 const SHUFFLE_TIMES = 50;
 let oppenedCards = [];
+let flippedCards = [];
 let gameOver = true;
 let score = 0;
 let seconds = 120;
-let hiddenCards = cards.length;
 
 const scoreEl = document.querySelector(".score");
 scoreEl.textContent = `score: ${score} pts`;
@@ -18,6 +18,7 @@ cards.forEach((el) => {
   el.addEventListener("click", () => {
     if (gameOver) return;
     const card = el.querySelector(".card-inner");
+    if (flippedCards.includes(card)) return;
     if (oppenedCards.includes(card)) return;
     card.classList.toggle("flip");
     oppenedCards.push(card);
@@ -29,15 +30,17 @@ cards.forEach((el) => {
       setTimeout(() => {
         oppenedCards.forEach((card) => card.classList.toggle("flip"));
         oppenedCards = [];
-        console.log(1, oppenedCards);
         return;
       }, 300);
     } else {
+      scoreEl.textContent = `score: ${score}+100 pts`;
       score += 100;
-      scoreEl.textContent = `score: ${score} pts`;
+      setTimeout(() => {
+        scoreEl.textContent = `score: ${score} pts`;
+      }, 500);
+      flippedCards.push(...oppenedCards);
       oppenedCards = [];
-      hiddenCards -= 2;
-      if (hiddenCards === 0) {
+      if (flippedCards.length === cards.length) {
         setTimeout(() => {
           cards.forEach((el) => {
             el.querySelector(".card-inner").classList.toggle("flip");
@@ -45,7 +48,7 @@ cards.forEach((el) => {
 
           setTimeout(() => {
             shuffle(SHUFFLE_TIMES);
-            hiddenCards = cards.length;
+            flippedCards = [];
           }, 300);
         }, 300);
       }

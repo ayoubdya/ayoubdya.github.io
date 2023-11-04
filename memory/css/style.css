@@ -12,7 +12,7 @@ img {
 
 .card {
   perspective: 1000px;
-  @apply cursor-pointer rounded-lg overflow-hidden hover:scale-110;
+  @apply cursor-pointer rounded-lg overflow-hidden hover:scale-110 transition-all;
 }
 
 .carpet {
