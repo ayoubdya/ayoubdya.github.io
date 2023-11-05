@@ -7,7 +7,7 @@ let oppenedCards = [];
 let flippedCards = [];
 let gameOver = true;
 let score = 0;
-let seconds = 10;
+let seconds = 120;
 let numCards = 4;
 
 const scoreEl = document.querySelector(".score");
@@ -27,11 +27,11 @@ function loadCards(num) {
     possibleCards.splice(randomIdx, 1);
     innerHTML += `<div class="card">
     <div class="card-inner">
-      <div class="card-front">
-        <img class="" src="images/img${i}.png" />
-      </div>
       <div class="card-back">
         <img class="" src="images/back.png" />
+      </div>
+      <div class="card-front">
+        <img class="" src="images/img${i}.png" />
       </div>
     </div>
   </div>`;
