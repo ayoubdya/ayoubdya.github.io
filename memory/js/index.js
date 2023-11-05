@@ -19,7 +19,7 @@ timerEl.textContent = `timer: ${seconds} s`;
 loadCards(numCards);
 
 function loadCards(num) {
-  const possibleCards = [...new Array(10).keys().map((el) => el + 1)];
+  const possibleCards = [...new Array(10).keys()].map((el) => el + 1);
   let innerHTML = "";
   for (let _i = 0; _i < num; ++_i) {
     const randomIdx = Math.floor(Math.random() * possibleCards.length);
