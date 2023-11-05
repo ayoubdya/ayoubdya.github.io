@@ -1,12 +1,14 @@
-const cards = Array.from(document.querySelectorAll(".card"));
+let cards;
 const difficultyEl = document.querySelector("#difficulty");
+const container = document.querySelector(".carpet");
 
 const SHUFFLE_TIMES = 50;
 let oppenedCards = [];
 let flippedCards = [];
 let gameOver = true;
 let score = 0;
-let seconds = 120;
+let seconds = 10;
+let numCards = 4;
 
 const scoreEl = document.querySelector(".score");
 scoreEl.textContent = `score: ${score} pts`;
@@ -14,48 +16,76 @@ scoreEl.textContent = `score: ${score} pts`;
 const timerEl = document.querySelector(".timer");
 timerEl.textContent = `timer: ${seconds} s`;
 
-cards.forEach((el) => {
-  el.addEventListener("click", () => {
-    if (gameOver) return;
-    const card = el.querySelector(".card-inner");
-    if (flippedCards.includes(card)) return;
-    if (oppenedCards.includes(card)) return;
-    card.classList.toggle("flip");
-    oppenedCards.push(card);
-    if (oppenedCards.length === 1) return;
-    if (
-      oppenedCards[0].querySelector(".card-front > img").src !==
-      oppenedCards[1].querySelector(".card-front > img").src
-    ) {
-      setTimeout(() => {
-        oppenedCards.forEach((card) => card.classList.toggle("flip"));
-        oppenedCards = [];
-        return;
-      }, 300);
-    } else {
-      scoreEl.textContent = `score: ${score}+100 pts`;
-      score += 100;
-      setTimeout(() => {
-        scoreEl.textContent = `score: ${score} pts`;
-      }, 500);
-      flippedCards.push(...oppenedCards);
-      oppenedCards = [];
-      if (flippedCards.length === cards.length) {
-        setTimeout(() => {
-          cards.forEach((el) => {
-            el.querySelector(".card-inner").classList.toggle("flip");
-          });
+loadCards(numCards);
 
-          setTimeout(() => {
-            shuffle(SHUFFLE_TIMES);
-            flippedCards = [];
-          }, 300);
+function loadCards(num) {
+  const possibleCards = [...new Array(10).keys().map((el) => el + 1)];
+  let innerHTML = "";
+  for (let _i = 0; _i < num; ++_i) {
+    const randomIdx = Math.floor(Math.random() * possibleCards.length);
+    const i = possibleCards[randomIdx];
+    possibleCards.splice(randomIdx, 1);
+    innerHTML += `<div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        <img class="" src="images/img${i}.png" />
+      </div>
+      <div class="card-back">
+        <img class="" src="images/back.png" />
+      </div>
+    </div>
+  </div>`;
+  }
+  container.innerHTML = ""; // clear container
+  container.innerHTML = innerHTML + innerHTML;
+  cards = Array.from(document.querySelectorAll(".card"));
+  handleOnClick();
+}
+
+function handleOnClick() {
+  cards.forEach((el) => {
+    el.addEventListener("click", () => {
+      if (gameOver) return;
+      const card = el.querySelector(".card-inner");
+      if (flippedCards.includes(card)) return;
+      if (oppenedCards.includes(card)) return;
+      card.classList.toggle("flip");
+      oppenedCards.push(card);
+      if (oppenedCards.length === 1) return;
+      if (
+        oppenedCards[0].querySelector(".card-front > img").src !==
+        oppenedCards[1].querySelector(".card-front > img").src
+      ) {
+        setTimeout(() => {
+          oppenedCards.forEach((card) => card.classList.toggle("flip"));
+          oppenedCards = [];
+          return;
         }, 300);
+      } else {
+        scoreEl.textContent = `score: ${score}+100 pts`;
+        score += 100;
+        setTimeout(() => {
+          scoreEl.textContent = `score: ${score} pts`;
+        }, 500);
+        flippedCards.push(...oppenedCards);
+        oppenedCards = [];
+        if (flippedCards.length === cards.length) {
+          setTimeout(() => {
+            cards.forEach((el) => {
+              el.querySelector(".card-inner").classList.toggle("flip");
+            });
+
+            setTimeout(() => {
+              loadCards(numCards);
+              shuffle(SHUFFLE_TIMES);
+              flippedCards = [];
+            }, 300);
+          }, 300);
+        }
       }
-      console.log(2, oppenedCards);
-    }
+    });
   });
-});
+}
 
 function shuffle(times) {
   if (times === 0) return;
@@ -76,15 +106,27 @@ function difficulty() {
   switch (difficultyValue) {
     case "easy":
       seconds = 120;
+      numCards = 4;
       break;
     case "medium":
       seconds = 60;
+      numCards = 5;
       break;
     case "hard":
       seconds = 30;
+      numCards = 6;
       break;
   }
+  fixGrid(numCards);
+  loadCards(numCards);
   timerEl.textContent = `timer: ${seconds} s`;
+}
+
+const classes = ["grid-cols-4", "grid-cols-5", "grid-cols-6"];
+
+function fixGrid(numOfCards) {
+  container.classList.remove(...classes);
+  container.classList.add(`grid-cols-${numOfCards}`);
 }
 
 function startGame() {

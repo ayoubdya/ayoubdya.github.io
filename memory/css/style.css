@@ -37,14 +37,14 @@ img {
 .card-front,
 .card-back {
   position: absolute;
-  width: 100%;
   height: 100%;
+  width: 100%;
   backface-visibility: hidden;
 
   & > img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: contain;
   }
 }
 
